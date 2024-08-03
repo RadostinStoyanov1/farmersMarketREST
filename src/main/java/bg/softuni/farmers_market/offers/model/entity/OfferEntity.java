@@ -24,8 +24,6 @@ public class OfferEntity {
     private String name;
 
     private Long author;
-    @Column(name = "likes")
-    private Long likes = 0l;
 
     public Long getId() {
         return id;
@@ -72,12 +70,4 @@ public class OfferEntity {
         return this;
     }
 
-    public Long getLikes() {
-        return likes;
-    }
-
-    public OfferEntity setLikes(Long likes) {
-        this.likes = likes;
-        return this;
-    }
 }
