@@ -3,8 +3,10 @@ package bg.softuni.farmers_market.offers.web;
 import bg.softuni.farmers_market.offers.model.dto.AddOfferDTO;
 import bg.softuni.farmers_market.offers.model.dto.OfferDTO;
 import bg.softuni.farmers_market.offers.service.OfferService;
+import bg.softuni.farmers_market.offers.service.exception.ApiOfferNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -55,6 +57,18 @@ public class OfferController {
                                 .buildAndExpand(offerDTO.getId())
                                 .toUri()
                 ).body(offerDTO);
+
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ApiOfferNotFoundException.class)
+    @ResponseBody
+    public NotFoundErrorInfo handleApiOfferNotFoundException(ApiOfferNotFoundException apiOfferNotFoundException) {
+        return new NotFoundErrorInfo("NOT FOUND", apiOfferNotFoundException.getId());
+    }
+
+
+    public record NotFoundErrorInfo(String code, Object id) {
 
     }
 

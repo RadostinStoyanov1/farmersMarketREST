@@ -5,6 +5,7 @@ import bg.softuni.farmers_market.offers.model.dto.OfferDTO;
 import bg.softuni.farmers_market.offers.model.entity.OfferEntity;
 import bg.softuni.farmers_market.offers.repository.OfferRepository;
 import bg.softuni.farmers_market.offers.service.OfferService;
+import bg.softuni.farmers_market.offers.service.exception.ApiOfferNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,7 @@ public class OfferServiceImpl implements OfferService {
         return offerRepository
                 .findById(id)
                 .map(o -> modelMapper.map(o, OfferDTO.class))
-                .orElseThrow(() -> new IllegalArgumentException("Not found!"));
+                .orElseThrow(() -> new ApiOfferNotFoundException("Offer with id: " + id + "was not found", id));
     }
 
     @Override
