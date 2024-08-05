@@ -10,4 +10,5 @@ public interface OfferService {
     public OfferDTO getOfferById(Long id);
     public void deleteOffer(Long offerId);
     public List<OfferDTO> getAllOffers();
+    public void cleanupOldOffers();
 }

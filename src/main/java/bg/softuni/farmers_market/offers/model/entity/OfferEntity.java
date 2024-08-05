@@ -1,8 +1,9 @@
 package bg.softuni.farmers_market.offers.model.entity;
 
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
 
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,10 @@ public class OfferEntity {
     private String name;
 
     private Long author;
+
+    @NotNull
+    @Column
+    private Instant created = Instant.now();
 
     public Long getId() {
         return id;

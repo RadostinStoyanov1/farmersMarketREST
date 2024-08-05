@@ -18,5 +18,7 @@ spring:
     init:
       mode: never
 
+offers.retention.period: P365D
+
 server:
   port: 8081
