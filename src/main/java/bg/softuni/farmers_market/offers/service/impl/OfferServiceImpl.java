@@ -23,7 +23,7 @@ public class OfferServiceImpl implements OfferService {
     private final ModelMapper modelMapper;
     private final Period retentionPeriod;
 
-    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, @Value("${offers.retention.period}") Period retentionPeriod) {
+    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, @Value("${offers.retention.period}")Period retentionPeriod) {
         this.offerRepository = offerRepository;
         this.modelMapper = modelMapper;
         this.retentionPeriod = retentionPeriod;
@@ -63,7 +63,7 @@ public class OfferServiceImpl implements OfferService {
         Instant deleteBefore = now.minus(retentionPeriod);
         LOGGER.info("Removing all offers older than " + deleteBefore);
         offerRepository.deleteOldOffers(deleteBefore);
-        LOGGER.info("Old orders were removed");
+        LOGGER.info("Old offers were removed");
     }
 
 

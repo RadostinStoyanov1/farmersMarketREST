@@ -75,4 +75,12 @@ public class OfferEntity {
         return this;
     }
 
+    public Instant getCreated() {
+        return created;
+    }
+
+    public OfferEntity setCreated(Instant created) {
+        this.created = created;
+        return this;
+    }
 }
